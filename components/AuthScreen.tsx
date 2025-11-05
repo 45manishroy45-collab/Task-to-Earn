@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { EyeOpenIcon, EyeClosedIcon, GoogleIcon } from './icons/Icons';
+import { EyeOpenIcon, EyeClosedIcon } from './icons/Icons';
 
 interface AuthScreenProps {
     onLogin: (email: string, pass: string) => { success: boolean, error?: string };
     onRegister: (name: string, email: string, pass: string) => { success: boolean, error?: string };
-    onGoogleLogin: () => { success: boolean, error?: string };
 }
 
-const AuthScreen: React.FC<AuthScreenProps> = ({ onLogin, onRegister, onGoogleLogin }) => {
+const AuthScreen: React.FC<AuthScreenProps> = ({ onLogin, onRegister }) => {
     const [isLogin, setIsLogin] = useState(true);
     const [showPassword, setShowPassword] = useState(false);
     const [name, setName] = useState('');
@@ -26,14 +25,6 @@ const AuthScreen: React.FC<AuthScreenProps> = ({ onLogin, onRegister, onGoogleLo
         }
         if (result && !result.success) {
             setError(result.error || 'An unknown error occurred.');
-        }
-    };
-    
-    const handleGoogleClick = () => {
-        setError('');
-        const result = onGoogleLogin();
-        if (result && !result.success) {
-            setError(result.error || 'Google Sign-In failed.');
         }
     };
 
@@ -85,17 +76,6 @@ const AuthScreen: React.FC<AuthScreenProps> = ({ onLogin, onRegister, onGoogleLo
                         {isLogin ? 'Sign In' : 'Create Account'}
                     </button>
                 </form>
-
-                <div className="relative flex py-2 items-center">
-                    <div className="flex-grow border-t border-gray-600"></div>
-                    <span className="flex-shrink mx-4 text-gray-400">OR</span>
-                    <div className="flex-grow border-t border-gray-600"></div>
-                </div>
-
-                <button onClick={handleGoogleClick} className="w-full flex items-center justify-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-4 rounded-lg transition-colors">
-                    <GoogleIcon className="w-6 h-6 mr-3" />
-                    Sign in with Google
-                </button>
             </div>
         </div>
     );

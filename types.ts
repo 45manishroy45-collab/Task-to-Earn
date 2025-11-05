@@ -18,6 +18,12 @@ export interface Profile {
     upi: string;
 }
 
+export interface User extends Profile {
+    password_plain: string;
+    wallet: number;
+    bonusClaimed: boolean;
+}
+
 export interface Survey {
     id: string;
     q: string; // question
@@ -30,6 +36,7 @@ export interface Withdrawal {
     destination: string;
     date: Date;
     status: 'Pending' | 'Approved' | 'Failed';
+    userEmail: string;
 }
 
 // Types for Ludo Game
