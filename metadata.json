@@ -1,0 +1,5 @@
+{
+  "name": "MicroTask Wallet",
+  "description": "A web application that allows users to earn money by completing simple tasks like solving captchas and filling out surveys. It includes a wallet system, user profile management, and a withdrawal feature.",
+  "requestFramePermissions": []
+}
